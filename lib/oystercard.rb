@@ -9,7 +9,6 @@ class Oystercard
     @max_amount = DEFAULT_MAXIMUM_AMOUNT
     @min_amount = DEFAULT_MINIMUM_AMOUNT
     @entry_station = nil
-    @journeys = []
   end
 
   def top_up(amount)
@@ -29,7 +28,6 @@ class Oystercard
 
   def touch_out(exit_station)
     deduct(@min_amount)
-    @journeys << { 'entry station' => @entry_station, 'exit station' => exit_station }
     @entry_station = nil
   end
 

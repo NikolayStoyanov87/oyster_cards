@@ -14,20 +14,12 @@ describe Oystercard do
       expect(subject.balance).to eq 0
     end
 
-    it 'should not be in journey if not touched in' do
-      expect(subject.in_journey?).to eq false
-    end
-
     it 'initially not in a journey' do
       expect(subject).not_to be_in_journey
     end
 
     it 'should have a minimum amount with 1 as a constant' do
       expect(Oystercard::DEFAULT_MINIMUM_AMOUNT).to eq 1
-    end
-
-    it 'should have an empty list of journeys by default' do
-      expect(subject.journeys).to eq []
     end
 
   end
@@ -73,21 +65,6 @@ describe Oystercard do
     it 'should set entry_station to nil after touching out' do
       subject.touch_out(exit_station)
       expect(subject.entry_station).to eq nil
-    end
-
-    it 'should store a lists of journeys' do
-      subject.touch_out(exit_station)
-      subject.touch_in(entry_station)
-      subject.touch_out(exit_station)
-      expect(subject.journeys).to eq [
-        { 'entry station' => entry_station, 'exit station' => exit_station },
-        { 'entry station' => entry_station, 'exit station' => exit_station }
-      ]
-    end
-
-    it 'should store a lists of journeys' do
-      subject.touch_out(exit_station)
-      expect(subject.journeys.length).to eq 1
     end
 
   end
